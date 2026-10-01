@@ -33,3 +33,18 @@ This repository contains the metadata assets (no media blobs) used by [Space Pho
 
 ## Usage as a Static API
 It should be possible to fetch individual photos directly from GitHub using links like `https://raw.githubusercontent.com/yakovmanshin/spacephotos-assets/refs/heads/main/assets/photos/2018-03-17.json`. You may want to use a fork, in case I delete this repo at some point.
+
+## Media URLs
+Media URLs at `apod.nasa.gov` will most likely not function, but it’s possible to construct URLs in the new format dynamically (though it’s effectively a guess).
+
+Example (from [the asset above](https://raw.githubusercontent.com/yakovmanshin/spacephotos-assets/refs/heads/main/assets/photos/2018-03-17.json)):
+1. Use the `hdurl` whenever available (e.g., `https://apod.nasa.gov/apod/image/1803/crab_lg.jpg`);
+1. Replace `https://apod.nasa.gov/apod/image/` with `https://assets.science.nasa.gov/content/dam/science/cds/apod/apod/` (for the large image) or with `https://assets.science.nasa.gov/dynamicimage/assets/science/cds/apod/apod/` (for the dynamically resized one);
+1. Expand the four-digit number into a year + month: `1803` becomes `2018/march`;
+1. Keep the file name.
+
+Result:
+* Original image (`hdurl`): https://apod.nasa.gov/apod/image/1803/crab_lg.jpg
+* Large image: https://assets.science.nasa.gov/content/dam/science/cds/apod/apod/2018/march/crab_lg.jpg
+* Regular image (resized): https://assets.science.nasa.gov/dynamicimage/assets/science/cds/apod/apod/2018/march/crab_lg.jpg?w=1280&h=800 (notice that I request 1280 × 800 but the response is 1232 × 800)
+* The `url` value from the asset (`https://apod.nasa.gov/apod/image/1803/crab_lg1024.jpg`) is effectively not used
