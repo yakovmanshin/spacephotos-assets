@@ -30,3 +30,6 @@ This repository contains the metadata assets (no media blobs) used by [Space Pho
   * `2025-08-26`
 * Many assets have been updated to use characters like `“` / `”`, `‘` / `’`, `—` (em dash), etc. where appropriate.
 * Media URLs hosted at `apod.nasa.gov` will probably not work.
+
+## Usage as a Static API
+It should be possible to fetch individual photos directly from GitHub using links like `https://raw.githubusercontent.com/yakovmanshin/spacephotos-assets/refs/heads/main/assets/photos/2018-03-17.json`. You may want to use a fork, in case I delete this repo at some point.
